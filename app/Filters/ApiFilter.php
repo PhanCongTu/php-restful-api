@@ -1,37 +1,20 @@
 <?php
-
-namespace App\Http\Services\V1;
+namespace App\Filters;
 
 use Illuminate\Http\Request;
 
-class CustomerQuery
-{
+class ApiFilter {
+
       // Mảng các parameter được phép truy vấn.
       // Mỗi parameter có 1 mảng các toán tử được phép sử dụng.
-
-      protected $safeParms = [
-            'name' => ['eq'],
-            'type' => ['eq'],
-            'email' => ['eq'],
-            'address' => ['eq'],
-            'city' => ['eq'],
-            'state' => ['eq'],
-            'postalCode' => ['eq', 'gt', 'lt'],
-      ];
+      protected $safeParms = [];
 
       // Mảng ánh xạ tên column từ tên parameter.
-      protected $columnMap = [
-            'postalCode' => 'postal_code',
-      ];
+      protected $columnMap = [];
 
       // Mảng ánh xạ các toán tử từ chuỗi.
-      protected $operatorMap = [
-            'eq' => '=',
-            'gt' => '>',
-            'lt' => '<',
-            'lte' => '<=',
-            'gte' => '>=',
-      ];
+      protected $operatorMap = [];
+
 
       /**
        * Đây là 1 method biến đổi các query paramter từ http request thành 1 mảng các diều kiện truy vấn.
